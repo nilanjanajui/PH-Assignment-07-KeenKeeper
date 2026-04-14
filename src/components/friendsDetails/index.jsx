@@ -67,7 +67,7 @@ export default function FriendDetails() {
     }, [id])
 
     function handleCheckIn(type) {
-        const existing = JSON.parse(localStorage.getItem('timeline') || '[]')
+        const existing = JSON.parse(sessionStorage.getItem('timeline') || '[]')
         const newEntry = {
             id: crypto.randomUUID(),
             type,
@@ -75,7 +75,7 @@ export default function FriendDetails() {
             title: `${type} with ${friend.name}`,
             date: new Date().toISOString(),
         }
-        localStorage.setItem('timeline', JSON.stringify([newEntry, ...existing]))
+        sessionStorage.setItem('timeline', JSON.stringify([newEntry, ...existing]))
         setToast({ message: `${type} with ${friend.name}`, type })
     }
 

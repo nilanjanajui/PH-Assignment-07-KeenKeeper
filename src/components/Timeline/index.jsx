@@ -27,7 +27,7 @@ function formatDate(dateStr) {
 
 export default function Timeline() {
     const [entries] = useState(() =>
-        JSON.parse(localStorage.getItem('timeline') || '[]')
+        JSON.parse(sessionStorage.getItem('timeline') || '[]')
     )
     const [filter, setFilter] = useState('All')
     const [dropdownOpen, setDropdownOpen] = useState(false)
