@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { Plus } from "lucide-react"
 
 const statusConfig = {
     'overdue': { label: 'Overdue', color: 'bg-red-500 text-white' },
@@ -16,9 +17,8 @@ function SummaryCard({ label, value }) {
     )
 }
 
-
 function FriendCard({ friend, onClick }) {
-    const cfg = statusConfig[friend.status] ?? statusConfig['on-track']
+    const cfg = statusConfig[friend.status] ?? statusConfig['on track']
 
     return (
         <div
@@ -48,13 +48,12 @@ function FriendCard({ friend, onClick }) {
                 ))}
             </div>
 
-            <span className={`text-xs font-semibold px-3 py-1 rounded-full ${cfg.className}`}>
+            <span className={`text-xs font-semibold px-3 py-1 rounded-full ${cfg.color}`}>
                 {cfg.label}
             </span>
         </div>
     )
 }
-
 
 export default function Home() {
     const [friends, setFriends] = useState([])
@@ -74,8 +73,8 @@ export default function Home() {
             })
     }, [])
 
-    const onTrack = friends.filter(f => f.status === 'on-track').length
-    const needAttention = friends.filter(f => f.status !== 'on-track').length
+    const onTrack = friends.filter(f => f.status === 'on track').length
+    const needAttention = friends.filter(f => f.status !== 'on track').length
 
     const summaryCards = [
         { label: 'Total Friends', value: friends.length },
@@ -86,7 +85,7 @@ export default function Home() {
 
     return (
         <>
-            {/* ── BANNER ── */}
+            {/* BANNER */}
             <section className="py-14 px-4 text-center">
                 <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3 leading-tight">
                     Friends to keep close in your life
@@ -97,7 +96,7 @@ export default function Home() {
                 </p>
 
                 <button className="inline-flex items-center gap-2 bg-[#2D4A3E] hover:bg-[#3D6B59]
-                           text-white font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm">
+                    text-white font-semibold px-5 py-2.5 rounded-lg transition-colors text-sm">
                     <Plus size={16} />
                     Add a Friend
                 </button>
@@ -110,7 +109,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ── FRIENDS GRID ── */}
+            {/* FRIENDS GRID */}
             <section className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-16">
                 <h2 className="text-xl font-bold text-gray-900 mb-5">Your Friends</h2>
 
@@ -133,6 +132,4 @@ export default function Home() {
             </section>
         </>
     )
-
-
 }

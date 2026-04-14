@@ -1,3 +1,7 @@
+import instagramIcon from '../assets/instagram.png'
+import facebookIcon from '../assets/facebook.png'
+import twitterIcon from '../assets/twitter.png'
+
 export default function Footer() {
     return (
         <footer className="bg-[#2D4A3E] text-white">
@@ -23,50 +27,48 @@ export default function Footer() {
                         <div className="flex items-center gap-3">
 
                             <a
-                            href="#"
-                            aria-label="Instagram"
-                            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20
-                            flex items-center justify-center transition-colors">
-                            <img src="../assets/instagram.png" alt="instagram" />
+                                href="#"
+                                aria-label="Instagram"
+                                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                            >
+                                <img src={instagramIcon} alt="instagram" className="w-5 h-5" />
                             </a>
 
-                        {/* Facebook */}
-                        <a
-                            href="#"
-                            aria-label="Facebook"
-                            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20
-                            flex items-center justify-center transition-colors"
-                        >
-                            <img src="../assets/facebook.png" alt="facebook" />
-                        </a>
+                            <a
+                                href="#"
+                                aria-label="Facebook"
+                                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                            >
+                                <img src={facebookIcon} alt="facebook" className="w-5 h-5" />
+                            </a>
 
-                        <a
-                            href="#"
-                            aria-label="X"
-                            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20
-                            flex items-center justify-center transition-colors"
-                        >
-                            <img src="../assets/twitter.png" alt="twitter" />
-                        </a>
+                            <a
+                                href="#"
+                                aria-label="X"
+                                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                            >
+                                <img src={twitterIcon} alt="twitter" className="w-5 h-5" />
+                            </a>
+
                         </div>
                     </div>
                 </div>
             </div>
 
-        <div className="border-t border-white/10">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4
-                        flex flex-col sm:flex-row items-center justify-between gap-2
-                        text-xs text-green-200">
-                <span>© 2026 KeenKeeper. All rights reserved.</span>
-                <div className="flex items-center gap-4">
-                    <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" className="hover:text-white transition-colors">Cookies</a>
+            {/* Bottom Bar */}
+            <div className="border-t border-white/10">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4
+                    flex flex-col sm:flex-row items-center justify-between gap-2
+                    text-xs text-green-200">
+                    <span>© 2026 KeenKeeper. All rights reserved.</span>
+                    <div className="flex items-center gap-4">
+                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                        <a href="#" className="hover:text-white transition-colors">Cookies</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </footer >
-)
-
+        </footer>
+    )
 }

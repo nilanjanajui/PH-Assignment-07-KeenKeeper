@@ -22,20 +22,21 @@ export default function Navbar() {
 
                     {/* Nav Links */}
                     <div className="flex items-center gap-1">
-                        {navLinks.map(({ path, label }) => {
-                            const isActive = pathname === path
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.path
+                            const NavIcon = link.Icon
                             return (
                                 <Link
-                                    key={path}
-                                    to={path}
+                                    key={link.path}
+                                    to={link.path}
                                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors
-                    ${isActive
+                                        ${isActive
                                             ? 'bg-[#2D4A3E] text-white'
                                             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                                         }`}
                                 >
-                                    <Icon size={15} />
-                                    {label}
+                                    <NavIcon size={15} />
+                                    {link.label}
                                 </Link>
                             )
                         })}
