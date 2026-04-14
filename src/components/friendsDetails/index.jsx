@@ -8,15 +8,33 @@ const statusConfig = {
     'on track': { label: 'On Track', color: 'bg-[#2D4A3E] text-white' },
 }
 
-function Toast({ message, onClose }) {
+const toastConfig = {
+    Call: { Icon: PhoneCall, color: '#2D4A3E', bg: '#f0f7f4' },
+    Text: { Icon: MessageSquare, color: '#3b82f6', bg: '#eff6ff' },
+    Video: { Icon: Video, color: '#8b5cf6', bg: '#f5f3ff' },
+}
+
+function Toast({ message, type, onClose }) {
+    const [width, setWidth] = useState(100)
+    const cfg = toastConfig[type] ?? toastConfig['Text']
+    const { Icon } = cfg
+
     useEffect(() => {
-        const t = setTimeout(onClose, 3000)
+        const t = setTimeout(onClose, 3200)
+        setTimeout(() => setWidth(0), 50)
         return () => clearTimeout(t)
     }, [onClose])
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#2D4A3E] text-white text-sm px-5 py-3 rounded-xl shadow-lg animate-fade-in">
-            {message}
+        <div className="fixed top-6 right-6 z-50 bg-white rounded-xl border border-gray-200 overflow-hidden shadow-md w-72">
+            <div className="flex items-center gap-3 px-4 py-3">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ background: cfg.bg }}>
+                    <Icon size={16} style={{ color: cfg.color }} />
+                </div>
+                <span className="text-sm text-gray-800 flex-1">{message}</span>
+                <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-lg leading-none">×</button>
+            </div>
+            <div className="h-0.5 transition-all ease-linear" style={{ width: `${width}%`, background: cfg.color, transitionDuration: '3200ms' }} />
         </div>
     )
 }
@@ -51,14 +69,14 @@ export default function FriendDetails() {
     function handleCheckIn(type) {
         const existing = JSON.parse(localStorage.getItem('timeline') || '[]')
         const newEntry = {
-            id: crypto.getRandomUUID(),
+            id: crypto.randomUUID(),
             type,
             friendName: friend.name,
             title: `${type} with ${friend.name}`,
             date: new Date().toISOString(),
         }
         localStorage.setItem('timeline', JSON.stringify([newEntry, ...existing]))
-        setToast(`${type} with ${friend.name} logged!`)
+        setToast({ message: `${type} with ${friend.name}`, type })
     }
 
     function formatDate(dateStr) {
@@ -95,7 +113,6 @@ export default function FriendDetails() {
         <>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-                {/* Back button */}
                 <button
                     onClick={() => navigate('/')}
                     className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors"
@@ -106,10 +123,8 @@ export default function FriendDetails() {
 
                 <div className="flex flex-col lg:flex-row gap-6 items-start">
 
-                    {/* ── LEFT COLUMN ── */}
                     <div className="flex flex-col gap-4 w-full lg:w-72 shrink-0">
 
-                        {/* Friend Info Card */}
                         <div className="bg-white rounded-xl p-6 border border-gray-100 flex flex-col items-center text-center gap-3">
                             <img
                                 src={friend.picture}
@@ -126,7 +141,6 @@ export default function FriendDetails() {
                                 </span>
                             </div>
 
-                            {/* Tags */}
                             <div className="flex flex-wrap justify-center gap-1.5">
                                 {friend.tags.map(tag => (
                                     <span
@@ -142,7 +156,6 @@ export default function FriendDetails() {
                             <p className="text-xs text-gray-400">Preferred: email</p>
                         </div>
 
-                        {/* Action Buttons */}
                         <div className="bg-white rounded-xl border border-gray-100 divide-y divide-gray-100 overflow-hidden">
                             <button className="w-full flex items-center justify-center gap-2 py-3.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
                                 <Bell size={15} />
@@ -159,17 +172,14 @@ export default function FriendDetails() {
                         </div>
                     </div>
 
-                    {/* ── RIGHT COLUMN ── */}
                     <div className="flex flex-col gap-4 flex-1 w-full">
 
-                        {/* Stats Cards */}
                         <div className="flex flex-col sm:flex-row gap-4">
                             <StatCard label="Days Since Contact" value={friend.days_since_contact} />
                             <StatCard label="Goal (Days)" value={friend.goal} />
                             <StatCard label="Next Due" value={formatDate(friend.next_due_date)} />
                         </div>
 
-                        {/* Relationship Goal */}
                         <div className="bg-white rounded-xl p-6 border border-gray-100">
                             <div className="flex items-center justify-between mb-3">
                                 <h3 className="font-semibold text-gray-900">Relationship Goal</h3>
@@ -182,7 +192,6 @@ export default function FriendDetails() {
                             </p>
                         </div>
 
-                        {/* Quick Check-In */}
                         <div className="bg-white rounded-xl p-6 border border-gray-100">
                             <h3 className="font-semibold text-gray-900 mb-4">Quick Check-In</h3>
                             <div className="grid grid-cols-3 gap-3">
@@ -210,8 +219,7 @@ export default function FriendDetails() {
                 </div>
             </div>
 
-            {/* Toast */}
-            {toast && <Toast message={toast} onClose={() => setToast(null)} />}
+            {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
         </>
     )
 }
