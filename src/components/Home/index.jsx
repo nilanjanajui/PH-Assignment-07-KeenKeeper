@@ -87,7 +87,7 @@ export default function Home() {
         <>
 
             <section className="py-14 px-4 text-center">
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3 leading-tight">
+                <h1 className="text-6xl sm:text-4xl font-extrabold text-gray-900 mb-3 leading-tight">
                     Friends to keep close in your life
                 </h1>
                 <p className="text-gray-500 text-sm max-w-md mx-auto mb-8">
@@ -101,7 +101,8 @@ export default function Home() {
                     Add a Friend
                 </button>
 
-                {/* Summary Cards */}
+
+
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mt-10">
                     {summaryCards.map(card => (
                         <SummaryCard key={card.label} {...card} />
@@ -109,8 +110,9 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-16">
-                <h2 className="text-xl font-bold text-gray-900 mb-5">Your Friends</h2>
+
+            <section className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-16 mt-5 border-t border-gray-300">
+                <h2 className="text-xl font-bold text-gray-900 mb-5 mt-10">Your Friends</h2>
 
                 {loading ? (
                     <div className="flex flex-col items-center justify-center py-28 gap-4">
