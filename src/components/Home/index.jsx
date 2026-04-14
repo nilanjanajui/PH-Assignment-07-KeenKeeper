@@ -101,8 +101,6 @@ export default function Home() {
                     Add a Friend
                 </button>
 
-
-
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mt-10">
                     {summaryCards.map(card => (
                         <SummaryCard key={card.label} {...card} />

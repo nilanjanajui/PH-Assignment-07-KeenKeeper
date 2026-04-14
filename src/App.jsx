@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './components/Home'
+import FriendDetails from './components/friendsDetails'
+
 
 export default function App() {
   return (
@@ -10,6 +12,7 @@ export default function App() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/friend/:id" element={<FriendDetails />} />
         </Routes>
       </main>
       <Footer />
