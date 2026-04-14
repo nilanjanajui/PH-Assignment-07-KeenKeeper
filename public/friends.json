@@ -1,121 +1,137 @@
 [
     {
         "id": 1,
-        "name": "Sarah Chen",
-        "picture": "https://randomuser.me/api/portraits/women/44.jpg",
-        "email": "sarah.chen@gmail.com",
-        "days_since_contact": 5,
-        "status": "on-track",
+        "name": "Daniel Kim",
+        "picture": "https://randomuser.me/api/portraits/men/41.jpg",
+        "email": "daniel.kim@gmail.com",
+        "days_since_contact": 10,
+        "status": "on track",
         "tags": [
             "college",
-            "close friend"
+            "tech"
         ],
-        "bio": "Met in freshman year of college. We bonded over late-night study sessions and terrible cafeteria food. Still my go-to person for life advice.",
+        "bio": "Met during a hackathon in college. We’ve collaborated on side projects ever since and still brainstorm startup ideas.",
         "goal": 14,
-        "next_due_date": "2026-04-20"
+        "next_due_date": "2026-04-24"
     },
     {
         "id": 2,
-        "name": "Marcus Johnson",
-        "picture": "https://randomuser.me/api/portraits/men/32.jpg",
-        "email": "marcus.j@outlook.com",
-        "days_since_contact": 18,
+        "name": "Hannah Scott",
+        "picture": "https://randomuser.me/api/portraits/women/39.jpg",
+        "email": "hannah.scott@yahoo.com",
+        "days_since_contact": 20,
         "status": "almost due",
         "tags": [
             "work",
-            "mentor"
+            "design"
         ],
-        "bio": "My first manager at the startup. Taught me more about product thinking than anyone else I know. Grab coffee whenever he visits town.",
+        "bio": "Worked together on multiple design projects. Always has sharp feedback and a great sense of aesthetics.",
         "goal": 21,
-        "next_due_date": "2026-04-17"
+        "next_due_date": "2026-04-16"
     },
     {
         "id": 3,
-        "name": "Emma Wilson",
-        "picture": "https://randomuser.me/api/portraits/women/68.jpg",
-        "email": "emma.wilson@gmail.com",
-        "days_since_contact": 62,
+        "name": "Liam Carter",
+        "picture": "https://randomuser.me/api/portraits/men/58.jpg",
+        "email": "liam.carter@gmail.com",
+        "days_since_contact": 40,
         "status": "overdue",
         "tags": [
-            "family"
+            "gym",
+            "fitness"
         ],
-        "bio": "Former colleague and great mentor. We worked together for three years building the design system from scratch. Prefer email.",
+        "bio": "Gym partner who keeps me accountable. We used to train together every morning before work.",
         "goal": 30,
-        "next_due_date": "2026-02-27"
+        "next_due_date": "2026-03-15"
     },
     {
         "id": 4,
-        "name": "Aisha Patel",
-        "picture": "https://randomuser.me/api/portraits/women/26.jpg",
-        "email": "aisha.patel@yahoo.com",
-        "days_since_contact": 45,
-        "status": "overdue",
+        "name": "Sofia Alvarez",
+        "picture": "https://randomuser.me/api/portraits/women/63.jpg",
+        "email": "sofia.alvarez@gmail.com",
+        "days_since_contact": 7,
+        "status": "on track",
         "tags": [
-            "hobby",
-            "travel"
+            "travel",
+            "photography"
         ],
-        "bio": "Travel buddy from our Southeast Asia backpacking trip. We have a shared dream of visiting every continent together before 40.",
-        "goal": 30,
-        "next_due_date": "2026-03-10"
+        "bio": "Met while traveling abroad. Shares stunning travel photos and always inspires my next trip.",
+        "goal": 14,
+        "next_due_date": "2026-04-21"
     },
     {
         "id": 5,
-        "name": "Ryan O'Brien",
-        "picture": "https://randomuser.me/api/portraits/men/75.jpg",
-        "email": "ryan.obrien@gmail.com",
-        "days_since_contact": 8,
-        "status": "on-track",
+        "name": "Ethan Brooks",
+        "picture": "https://randomuser.me/api/portraits/men/11.jpg",
+        "email": "ethan.brooks@outlook.com",
+        "days_since_contact": 15,
+        "status": "almost due",
         "tags": [
-            "college",
-            "sports"
+            "school",
+            "music"
         ],
-        "bio": "Roommate from sophomore year. Still meet up every few weeks for basketball and catching up over coffee in the neighborhood.",
-        "goal": 21,
-        "next_due_date": "2026-04-22"
+        "bio": "We were in the same school band. Still sends me new music recommendations regularly.",
+        "goal": 14,
+        "next_due_date": "2026-04-15"
     },
     {
         "id": 6,
-        "name": "Olivia Martinez",
-        "picture": "https://randomuser.me/api/portraits/women/54.jpg",
-        "email": "olivia.m@gmail.com",
-        "days_since_contact": 3,
-        "status": "on-track",
+        "name": "Maya Singh",
+        "picture": "https://randomuser.me/api/portraits/women/12.jpg",
+        "email": "maya.singh@gmail.com",
+        "days_since_contact": 2,
+        "status": "on track",
         "tags": [
-            "work",
+            "neighbor",
             "close friend"
         ],
-        "bio": "Current colleague who became a genuine friend. We grab lunch together almost every week and share a love for mystery novels.",
-        "goal": 14,
-        "next_due_date": "2026-04-25"
+        "bio": "Lives nearby and we often meet for evening walks. Easy to talk to about anything.",
+        "goal": 10,
+        "next_due_date": "2026-04-23"
     },
     {
         "id": 7,
-        "name": "Tom Baker",
-        "picture": "https://randomuser.me/api/portraits/men/22.jpg",
-        "email": "tom.baker@hotmail.com",
-        "days_since_contact": 28,
-        "status": "almost due",
+        "name": "Noah Fischer",
+        "picture": "https://randomuser.me/api/portraits/men/29.jpg",
+        "email": "noah.fischer@yahoo.com",
+        "days_since_contact": 33,
+        "status": "overdue",
         "tags": [
-            "hobby",
-            "gaming"
+            "work",
+            "startup"
         ],
-        "bio": "Met at a board game café three years ago. We have a standing Sunday gaming session that we've kept up through thick and thin.",
+        "bio": "Former coworker who left to start his own company. Always has interesting stories about entrepreneurship.",
         "goal": 30,
-        "next_due_date": "2026-04-18"
+        "next_due_date": "2026-03-12"
     },
     {
         "id": 8,
-        "name": "Lisa Nakamura",
-        "picture": "https://randomuser.me/api/portraits/women/37.jpg",
-        "email": "lisa.nakamura@gmail.com",
-        "days_since_contact": 55,
-        "status": "overdue",
+        "name": "Isabella Rossi",
+        "picture": "https://randomuser.me/api/portraits/women/48.jpg",
+        "email": "isabella.rossi@gmail.com",
+        "days_since_contact": 9,
+        "status": "on track",
         "tags": [
-            "college",
+            "art",
             "creative"
         ],
-        "bio": "Art school friend who now runs her own design studio in Tokyo. Her eye for aesthetics has always inspired me to think more visually.",
-        "goal": 30,
-        "next_due_date": "2026-03-01"
+        "bio": "Met at an art class. We occasionally collaborate on small creative projects for fun.",
+        "goal": 14,
+        "next_due_date": "2026-04-22"
+    },
+    {
+        "id": 9,
+        "name": "Jack Turner",
+        "picture": "https://randomuser.me/api/portraits/men/67.jpg",
+        "email": "jack.turner@hotmail.com",
+        "days_since_contact": 25,
+        "status": "almost due",
+        "tags": [
+            "sports",
+            "basketball"
+        ],
+        "bio": "We play basketball together on weekends. Competitive but always a good time.",
+        "goal": 21,
+        "next_due_date": "2026-04-19"
     }
 ]

@@ -85,7 +85,7 @@ export default function Home() {
 
     return (
         <>
-            {/* BANNER */}
+
             <section className="py-14 px-4 text-center">
                 <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3 leading-tight">
                     Friends to keep close in your life
@@ -109,7 +109,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* FRIENDS GRID */}
             <section className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-16">
                 <h2 className="text-xl font-bold text-gray-900 mb-5">Your Friends</h2>
 
