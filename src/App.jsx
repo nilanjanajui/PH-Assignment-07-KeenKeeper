@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import FriendDetails from './components/friendsDetails'
+import Timeline from './components/Timeline'
 
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/friend/:id" element={<FriendDetails />} />
+          <Route path="/timeline" element={<Timeline />} />
         </Routes>
       </main>
       <Footer />
