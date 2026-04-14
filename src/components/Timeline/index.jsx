@@ -44,10 +44,8 @@ export default function Timeline() {
     return (
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
 
-            {/* Heading */}
             <h1 className="text-3xl font-extrabold text-gray-900 mb-6">Timeline</h1>
 
-            {/* Filter Dropdown */}
             <div className="relative w-52 mb-6">
                 <button
                     onClick={() => setDropdownOpen(o => !o)}
@@ -79,7 +77,6 @@ export default function Timeline() {
                 )}
             </div>
 
-            {/* Timeline Entries */}
             {filtered.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-24 gap-3">
                     <p className="text-gray-400 text-sm">No timeline entries yet.</p>
@@ -95,12 +92,11 @@ export default function Timeline() {
                                 key={entry.id}
                                 className="bg-white rounded-xl px-5 py-4 border border-gray-100 flex items-center gap-4"
                             >
-                                {/* Icon */}
+
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${config.iconBg}`}>
                                     <EntryIcon size={18} className={config.iconColor} />
                                 </div>
 
-                                {/* Content */}
                                 <div>
                                     <p className="text-sm text-gray-900">
                                         <span className="font-bold">{entry.type}</span>
