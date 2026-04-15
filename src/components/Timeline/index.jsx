@@ -42,9 +42,7 @@ export default function Timeline() {
     const filterOptions = ['All', 'Call', 'Text', 'Video', 'Meetup']
 
     const processed = entries
-        // 1. Filter by type
         .filter(e => filter === 'All' || e.type === filter)
-        // 2. Search by friend name or interaction type
         .filter(e => {
             const q = search.toLowerCase()
             return (
@@ -52,7 +50,6 @@ export default function Timeline() {
                 e.type.toLowerCase().includes(q)
             )
         })
-        // 3. Sort by date
         .sort((a, b) => {
             const diff = new Date(b.date) - new Date(a.date)
             return sortOrder === 'newest' ? diff : -diff
@@ -63,10 +60,8 @@ export default function Timeline() {
 
             <h1 className="text-3xl font-extrabold text-gray-900 mb-6">Timeline</h1>
 
-            {/* Controls Row */}
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
 
-                {/* Search */}
                 <div className="relative flex-1">
                     <Search
                         size={15}
@@ -81,7 +76,6 @@ export default function Timeline() {
                     />
                 </div>
 
-                {/* Filter Dropdown */}
                 <div className="relative w-full sm:w-44">
                     <button
                         onClick={() => setDropdownOpen(o => !o)}
@@ -116,7 +110,6 @@ export default function Timeline() {
                     )}
                 </div>
 
-                {/* Sort Toggle */}
                 <button
                     onClick={() => setSortOrder(o => o === 'newest' ? 'oldest' : 'newest')}
                     className="flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-600 hover:border-gray-300 transition-colors whitespace-nowrap"
@@ -126,7 +119,6 @@ export default function Timeline() {
                 </button>
             </div>
 
-            {/* Timeline Entries */}
             {processed.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-24 gap-3">
                     <p className="text-gray-400 text-sm">
