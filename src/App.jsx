@@ -5,6 +5,7 @@ import Home from './components/Home'
 import FriendDetails from './components/friendsDetails'
 import Timeline from './components/Timeline'
 import Stats from './components/stats'
+import NotFound from './components/NotFound'
 
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/friend/:id" element={<FriendDetails />} />
           <Route path="/timeline" element={<Timeline />} />
           <Route path="/stats" element={<Stats />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
