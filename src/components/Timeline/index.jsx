@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PhoneCall, MessageSquare, Video, ChevronDown } from "lucide-react"
+import { PhoneCall, MessageSquare, Video, ChevronDown, Handshake } from "lucide-react"
 
 const typeConfig = {
     Call: {
@@ -17,6 +17,11 @@ const typeConfig = {
         iconBg: 'bg-gray-100',
         iconColor: 'text-gray-600',
     },
+    Meetup: {
+        icon: Handshake,
+        iconBg: 'bg-gray-100',
+        iconColor: 'text-gray-600',
+    }
 }
 
 function formatDate(dateStr) {
@@ -32,7 +37,7 @@ export default function Timeline() {
     const [filter, setFilter] = useState('All')
     const [dropdownOpen, setDropdownOpen] = useState(false)
 
-    const filterOptions = ['All', 'Call', 'Text', 'Video']
+    const filterOptions = ['All', 'Call', 'Text', 'Video', 'Meetup']
 
     const filtered = filter === 'All'
         ? entries
@@ -43,7 +48,6 @@ export default function Timeline() {
 
             <h1 className="text-3xl font-extrabold text-gray-900 mb-6">Timeline</h1>
 
-            {/* Filter Dropdown */}
             <div className="relative w-52 mb-6">
                 <button
                     onClick={() => setDropdownOpen(o => !o)}
@@ -78,12 +82,11 @@ export default function Timeline() {
                 )}
             </div>
 
-            {/* Timeline Entries */}
             {filtered.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-24 gap-3">
                     <p className="text-gray-400 text-sm">No timeline entries yet.</p>
                     <p className="text-gray-300 text-xs">
-                        Go to a friend's page and log a Call, Text, or Video.
+                        Go to a friend's page and log a Call, Text, Video, or Meetup.
                     </p>
                 </div>
             ) : (

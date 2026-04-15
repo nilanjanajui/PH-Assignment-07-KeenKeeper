@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import Home from './components/Home'
 import FriendDetails from './components/friendsDetails'
 import Timeline from './components/Timeline'
+import Stats from './components/stats'
 
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/friend/:id" element={<FriendDetails />} />
           <Route path="/timeline" element={<Timeline />} />
+          <Route path="/stats" element={<Stats />} />
         </Routes>
       </main>
       <Footer />
