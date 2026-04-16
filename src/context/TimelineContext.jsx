@@ -1,11 +1,9 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useState, useContext } from "react"
 
 const TimelineContext = createContext(null)
 
 export function TimelineProvider({ children }) {
-    const [entries, setEntries] = useState(() =>
-        JSON.parse(localStorage.getItem('timeline') || '[]')
-    )
+    const [entries, setEntries] = useState([])  // ← empty, no storage
 
     function addEntry(type, friendName) {
         const newEntry = {
@@ -15,9 +13,7 @@ export function TimelineProvider({ children }) {
             title: `${type} with ${friendName}`,
             date: new Date().toISOString(),
         }
-        const updated = [newEntry, ...entries]
-        localStorage.setItem('timeline', JSON.stringify(updated))
-        setEntries(updated)
+        setEntries(prev => [newEntry, ...prev])  // ← only in memory
     }
 
     return (
@@ -27,6 +23,7 @@ export function TimelineProvider({ children }) {
     )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useTimeline() {
     return useContext(TimelineContext)
 }
