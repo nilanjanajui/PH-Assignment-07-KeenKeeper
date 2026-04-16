@@ -1,5 +1,5 @@
-import { useState } from "react"
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recharts"
+import { useTimeline } from "../../context/TimelineContext"
 
 const COLORS = {
     Text: '#7C3AED',
@@ -8,16 +8,14 @@ const COLORS = {
 }
 
 export default function Stats() {
-    const [entries] = useState(() =>
-        JSON.parse(localStorage.getItem('timeline') || '[]')
-    )
+    const { entries } = useTimeline()
 
     const counts = entries.reduce((acc, entry) => {
         acc[entry.type] = (acc[entry.type] || 0) + 1
         return acc
     }, {})
 
-    const data = ['Text', 'Call', 'Video']
+    const data = ['Call', 'Text', 'Video']
         .filter(type => counts[type] > 0)
         .map(type => ({
             name: type,
@@ -39,43 +37,51 @@ export default function Stats() {
                 </p>
 
                 {hasData ? (
-                    <ResponsiveContainer width="100%" height={320}>
-                        <PieChart>
-                            <Pie
-                                data={data}
-                                cx="50%"
-                                cy="50%"
-                                innerRadius={90}
-                                outerRadius={130}
-                                paddingAngle={4}
-                                dataKey="value"
-                            >
-                                {data.map((entry) => (
-                                    <Cell
-                                        key={entry.name}
-                                        fill={COLORS[entry.name]}
-                                    />
-                                ))}
-                            </Pie>
-                            <Tooltip
-                                formatter={(value, name) => [`${value} interactions`, name]}
-                                contentStyle={{
-                                    borderRadius: '8px',
-                                    border: '1px solid #e5e7eb',
-                                    fontSize: '13px',
-                                }}
-                            />
-                            <Legend
-                                iconType="circle"
-                                iconSize={10}
-                                formatter={(value) => (
-                                    <span style={{ color: '#6b7280', fontSize: '13px' }}>
-                                        {value}
-                                    </span>
-                                )}
-                            />
-                        </PieChart>
-                    </ResponsiveContainer>
+                    <>
+                        <div className="flex justify-center gap-8 mb-2">
+                            {data.map(item => (
+                                <div key={item.name} className="text-center">
+                                    <p className="text-2xl font-bold" style={{ color: COLORS[item.name] }}>
+                                        {item.value}
+                                    </p>
+                                    <p className="text-xs text-gray-400">{item.name}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <ResponsiveContainer width="100%" height={300}>
+                            <PieChart>
+                                <Pie
+                                    data={data}
+                                    cx="50%"
+                                    cy="50%"
+                                    innerRadius={90}
+                                    outerRadius={130}
+                                    paddingAngle={4}
+                                    dataKey="value"
+                                >
+                                    {data.map((entry) => (
+                                        <Cell key={entry.name} fill={COLORS[entry.name]} />
+                                    ))}
+                                </Pie>
+                                <Tooltip
+                                    formatter={(value, name) => [`${value} interactions`, name]}
+                                    contentStyle={{
+                                        borderRadius: '8px',
+                                        border: '1px solid #e5e7eb',
+                                        fontSize: '13px',
+                                    }}
+                                />
+                                <Legend
+                                    iconType="circle"
+                                    iconSize={10}
+                                    formatter={(value) => (
+                                        <span style={{ color: '#6b7280', fontSize: '13px' }}>{value}</span>
+                                    )}
+                                />
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </>
                 ) : (
                     <div className="flex flex-col items-center justify-center py-24 gap-3">
                         <p className="text-gray-400 text-sm">No interactions logged yet.</p>

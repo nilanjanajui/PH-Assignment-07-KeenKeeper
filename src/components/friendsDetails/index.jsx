@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { PhoneCall, MessageSquare, Video, Bell, Archive, Trash2, ArrowLeft } from "lucide-react"
+import { useTimeline } from "../../context/TimelineContext"
 
 const statusConfig = {
     'overdue': { label: 'Overdue', color: 'bg-red-500 text-white' },
@@ -17,7 +18,7 @@ const toastConfig = {
 function Toast({ message, type, onClose }) {
     const [width, setWidth] = useState(100)
     const cfg = toastConfig[type] ?? toastConfig['Text']
-    const { Icon } = cfg
+    const ToastIcon = cfg.Icon
 
     useEffect(() => {
         const t = setTimeout(onClose, 3200)
@@ -29,12 +30,15 @@ function Toast({ message, type, onClose }) {
         <div className="fixed top-6 right-6 z-50 bg-white rounded-xl border border-gray-200 overflow-hidden shadow-md w-72">
             <div className="flex items-center gap-3 px-4 py-3">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ background: cfg.bg }}>
-                    <Icon size={16} style={{ color: cfg.color }} />
+                    <ToastIcon size={16} style={{ color: cfg.color }} />
                 </div>
                 <span className="text-sm text-gray-800 flex-1">{message}</span>
                 <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-lg leading-none">×</button>
             </div>
-            <div className="h-0.5 transition-all ease-linear" style={{ width: `${width}%`, background: cfg.color, transitionDuration: '3200ms' }} />
+            <div
+                className="h-0.5 transition-all ease-linear"
+                style={{ width: `${width}%`, background: cfg.color, transitionDuration: '3200ms' }}
+            />
         </div>
     )
 }
@@ -51,6 +55,7 @@ function StatCard({ label, value }) {
 export default function FriendDetails() {
     const { id } = useParams()
     const navigate = useNavigate()
+    const { addEntry } = useTimeline()
     const [friend, setFriend] = useState(null)
     const [loading, setLoading] = useState(true)
     const [toast, setToast] = useState(null)
@@ -66,16 +71,10 @@ export default function FriendDetails() {
             .catch(() => setLoading(false))
     }, [id])
 
+    const handleCloseToast = useCallback(() => setToast(null), [])
+
     function handleCheckIn(type) {
-        const existing = JSON.parse(sessionStorage.getItem('timeline') || '[]')
-        const newEntry = {
-            id: crypto.randomUUID(),
-            type,
-            friendName: friend.name,
-            title: `${type} with ${friend.name}`,
-            date: new Date().toISOString(),
-        }
-        sessionStorage.setItem('timeline', JSON.stringify([newEntry, ...existing]))
+        addEntry(type, friend.name)
         setToast({ message: `${type} with ${friend.name}`, type })
     }
 
@@ -97,10 +96,7 @@ export default function FriendDetails() {
         return (
             <div className="flex flex-col items-center justify-center py-40 gap-4">
                 <p className="text-gray-500 text-lg">Friend not found.</p>
-                <button
-                    onClick={() => navigate('/')}
-                    className="text-sm text-[#2D4A3E] underline"
-                >
+                <button onClick={() => navigate('/')} className="text-sm text-[#2D4A3E] underline">
                     Go back home
                 </button>
             </div>
@@ -123,6 +119,7 @@ export default function FriendDetails() {
 
                 <div className="flex flex-col lg:flex-row gap-6 items-start">
 
+                    {/* LEFT COLUMN */}
                     <div className="flex flex-col gap-4 w-full lg:w-72 shrink-0">
 
                         <div className="bg-white rounded-xl p-6 border border-gray-100 flex flex-col items-center text-center gap-3">
@@ -140,18 +137,13 @@ export default function FriendDetails() {
                                     {cfg.label}
                                 </span>
                             </div>
-
                             <div className="flex flex-wrap justify-center gap-1.5">
                                 {friend.tags.map(tag => (
-                                    <span
-                                        key={tag}
-                                        className="text-[10px] font-semibold uppercase tracking-wide bg-green-100 text-green-800 px-2 py-0.5 rounded-full"
-                                    >
+                                    <span key={tag} className="text-[10px] font-semibold uppercase tracking-wide bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
                                         {tag}
                                     </span>
                                 ))}
                             </div>
-
                             <p className="text-sm text-gray-500 italic">"{friend.bio}"</p>
                             <p className="text-xs text-gray-400">Preferred: email</p>
                         </div>
@@ -172,6 +164,7 @@ export default function FriendDetails() {
                         </div>
                     </div>
 
+                    {/* RIGHT COLUMN */}
                     <div className="flex flex-col gap-4 flex-1 w-full">
 
                         <div className="flex flex-col sm:flex-row gap-4">
@@ -200,7 +193,7 @@ export default function FriendDetails() {
                                     { type: 'Text', icon: MessageSquare },
                                     { type: 'Video', icon: Video },
                                 ].map((item) => {
-                                    const CheckInIcon = item.icon   // ✅ ESLint sees it as used in JSX
+                                    const CheckInIcon = item.icon
                                     return (
                                         <button
                                             key={item.type}
@@ -214,12 +207,11 @@ export default function FriendDetails() {
                                 })}
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
-            {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
+            {toast && <Toast message={toast.message} type={toast.type} onClose={handleCloseToast} />}
         </>
     )
 }

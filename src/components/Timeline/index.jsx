@@ -1,27 +1,12 @@
 import { useState } from "react"
 import { PhoneCall, MessageSquare, Video, ChevronDown, Handshake, Search, ArrowUpDown } from "lucide-react"
+import { useTimeline } from "../../context/TimelineContext"
 
 const typeConfig = {
-    Call: {
-        icon: PhoneCall,
-        iconBg: 'bg-gray-100',
-        iconColor: 'text-gray-600',
-    },
-    Text: {
-        icon: MessageSquare,
-        iconBg: 'bg-gray-100',
-        iconColor: 'text-gray-600',
-    },
-    Video: {
-        icon: Video,
-        iconBg: 'bg-gray-100',
-        iconColor: 'text-gray-600',
-    },
-    Meetup: {
-        icon: Handshake,
-        iconBg: 'bg-gray-100',
-        iconColor: 'text-gray-600',
-    }
+    Call: { icon: PhoneCall, iconBg: 'bg-gray-100', iconColor: 'text-gray-600' },
+    Text: { icon: MessageSquare, iconBg: 'bg-gray-100', iconColor: 'text-gray-600' },
+    Video: { icon: Video, iconBg: 'bg-gray-100', iconColor: 'text-gray-600' },
+    Meetup: { icon: Handshake, iconBg: 'bg-gray-100', iconColor: 'text-gray-600' },
 }
 
 function formatDate(dateStr) {
@@ -31,9 +16,7 @@ function formatDate(dateStr) {
 }
 
 export default function Timeline() {
-    const [entries] = useState(() =>
-        JSON.parse(sessionStorage.getItem('timeline') || '[]')
-    )
+    const { entries } = useTimeline()
     const [filter, setFilter] = useState('All')
     const [dropdownOpen, setDropdownOpen] = useState(false)
     const [search, setSearch] = useState('')
@@ -63,10 +46,7 @@ export default function Timeline() {
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
 
                 <div className="relative flex-1">
-                    <Search
-                        size={15}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                    />
+                    <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
                         type="text"
                         placeholder="Search by name or type..."
@@ -82,10 +62,7 @@ export default function Timeline() {
                         className="w-full flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-600 hover:border-gray-300 transition-colors"
                     >
                         {filter === 'All' ? 'Filter timeline' : `Filter: ${filter}`}
-                        <ChevronDown
-                            size={15}
-                            className={`transition-transform ${dropdownOpen ? 'rotate-180' : ''}`}
-                        />
+                        <ChevronDown size={15} className={`transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
 
                     {dropdownOpen && (
@@ -93,15 +70,9 @@ export default function Timeline() {
                             {filterOptions.map(opt => (
                                 <button
                                     key={opt}
-                                    onClick={() => {
-                                        setFilter(opt)
-                                        setDropdownOpen(false)
-                                    }}
+                                    onClick={() => { setFilter(opt); setDropdownOpen(false) }}
                                     className={`w-full text-left px-4 py-2.5 text-sm transition-colors
-                                        ${filter === opt
-                                            ? 'bg-[#2D4A3E] text-white'
-                                            : 'text-gray-600 hover:bg-gray-50'
-                                        }`}
+                                        ${filter === opt ? 'bg-[#2D4A3E] text-white' : 'text-gray-600 hover:bg-gray-50'}`}
                                 >
                                     {opt}
                                 </button>
@@ -122,15 +93,10 @@ export default function Timeline() {
             {processed.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-24 gap-3">
                     <p className="text-gray-400 text-sm">
-                        {search || filter !== 'All'
-                            ? 'No entries match your search.'
-                            : 'No timeline entries yet.'
-                        }
+                        {search || filter !== 'All' ? 'No entries match your search.' : 'No timeline entries yet.'}
                     </p>
                     {!search && filter === 'All' && (
-                        <p className="text-gray-300 text-xs">
-                            Go to a friend's page and log a Call, Text, Video, or Meetup.
-                        </p>
+                        <p className="text-gray-300 text-xs">Go to a friend's page and log a Call, Text, or Video.</p>
                     )}
                 </div>
             ) : (
@@ -139,10 +105,7 @@ export default function Timeline() {
                         const config = typeConfig[entry.type] ?? typeConfig['Call']
                         const EntryIcon = config.icon
                         return (
-                            <div
-                                key={entry.id}
-                                className="bg-white rounded-xl px-5 py-4 border border-gray-100 flex items-center gap-4"
-                            >
+                            <div key={entry.id} className="bg-white rounded-xl px-5 py-4 border border-gray-100 flex items-center gap-4">
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${config.iconBg}`}>
                                     <EntryIcon size={18} className={config.iconColor} />
                                 </div>
@@ -152,9 +115,7 @@ export default function Timeline() {
                                         {' '}
                                         <span className="text-gray-500">with {entry.friendName}</span>
                                     </p>
-                                    <p className="text-xs text-gray-400 mt-0.5">
-                                        {formatDate(entry.date)}
-                                    </p>
+                                    <p className="text-xs text-gray-400 mt-0.5">{formatDate(entry.date)}</p>
                                 </div>
                             </div>
                         )
