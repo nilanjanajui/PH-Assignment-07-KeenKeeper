@@ -1,16 +1,36 @@
-# React + Vite
+# KeenKeeper 🌿
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Keep your friendships alive — your personal shelf of meaningful connections.
 
-Currently, two official plugins are available:
+KeenKeeper is a friendship management web app that helps you stay in touch with the people who matter most. Track when you last connected, log interactions, and get a visual overview of your relationship health — all in one place.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🛠️ Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Technology | Purpose |
+|---|---|
+| React.js | UI library |
+| React Router v6 | Client-side navigation |
+| Tailwind CSS v4 | Styling and responsiveness |
+| Context API | Global state management |
+| Recharts | Pie chart visualization |
+| Vite | Build tool and dev server |
+| Lucide React | Icons |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Key Features
+
+### 1. 👫 Friend Tracking Dashboard
+View all your friends in a responsive 4-column grid. Each card shows the friend's photo, days since last contact, tags, and a color-coded status — **Overdue**, **Almost Due**, or **On Track** — so you always know who needs attention.
+
+### 2. ⚡ Quick Check-In with Timeline Logging
+From any friend's detail page, log a **Call**, **Text**, or **Video** interaction in one click. A toast notification confirms the action, and the entry is instantly added to your Timeline — powered by React Context API for real-time updates across pages.
+
+### 3. 📊 Friendship Analytics
+The Stats page displays a live **Recharts pie chart** showing the breakdown of your interactions by type (Call, Text, Video). The chart updates in real time as you log new check-ins, giving you a clear picture of how you're staying connected.
+
+---
+
+## 📁 Project Structure
