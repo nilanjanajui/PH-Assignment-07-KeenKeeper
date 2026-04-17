@@ -34,3 +34,48 @@ The Stats page displays a live **Recharts pie chart** showing the breakdown of y
 ---
 
 ## 📁 Project Structure
+```
+src/
+├── components/
+│   ├── Home/
+│   ├── friendsDetails/
+│   ├── Timeline/
+│   ├── stats/
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   └── NotFound.jsx
+├── context/
+│   └── TimelineContext.jsx
+└── main.jsx
+
+```
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repository
+git clone https://github.com/nilanjanajui/PH-Assignment-07-KeenKeeper.git
+
+# Navigate to the project
+cd PH-Assignment-07-KeenKeeper
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+```
+
+---
+
+## 🌐 Live Demo
+
+[View Live →](https://keenkeeper22.netlify.app/)
+
+---
+
+## 📄 License
+
+This project was built as part of a web development assignment.
