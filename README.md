@@ -72,7 +72,7 @@ npm run dev
 
 ## 🌐 Live Demo
 
-[View Live →](https://keenkeeper22.netlify.app/)
+[View Live →][https://keenkeeper22.netlify.app/](https://keenkeeper22.netlify.app/)
 
 ---
 
